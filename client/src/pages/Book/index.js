@@ -4,13 +4,13 @@ import { FiPower, FiEdit, FiTrash2 } from 'react-icons/fi'
 
 import api from '../../services/api'
 
-import './styles.css';
+import './style.css';
 
 import logoImage from '../../assets/logo.svg'
 
 export default function Books(){
 
-    const [books, setBooks] = useState([]);
+    const [books, setBook] = useState([]);
     const [page, setPage] = useState(1);
     
     const username = localStorage.getItem('username');
@@ -38,7 +38,7 @@ export default function Books(){
                 }
             })
 
-            setBooks(books.filter(book => book.id !== id))
+            setBook(books.filter(book => book.id !== id))
         } catch (err) {
             alert('Delete failed! Try again.');
         }
@@ -56,7 +56,7 @@ export default function Books(){
             }
         });
 
-        setBooks([ ...books, ...response.data._embedded.bookVoes])
+        setBook([ ...books, ...response.data._embedded.bookVoes])
         setPage(page + 1);
     }
 
